@@ -24,9 +24,8 @@ RUN apt update && apt install -y \
     zlib1g-dev
 
 RUN luarocks install telegram-bot-lua
-RUN luarocks install lua-http
 RUN luarocks install lua-cjson
-RUN luarocks install ltn12 htmlparser
+RUN luarocks install ltn12
 RUN luarocks install htmlparser
 
 WORKDIR /app
