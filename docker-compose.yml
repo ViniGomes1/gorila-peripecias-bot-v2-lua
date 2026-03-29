@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  # O serviço do Splash (já configurado)
+  splash:
+    image: scrapinghub/splash
+    ports:
+      - "8050:8050"
+
+  # O seu programa em Lua
+  meu-app-lua:
+    build: .
+    depends_on:
+      - splash
+    environment:
+      - SPLASH_URL=http://splash:8050
+    volumes:
+      - .:/app
+    working_dir: /app
+    # command: lua seu_script.lua
