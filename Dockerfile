@@ -17,8 +17,21 @@ RUN curl -L -R -O https://www.lua.org/ftp/lua-5.5.0.tar.gz && \
     cd .. && \
     rm -rf lua-5.5.0 lua-5.5.0.tar.gz
 
+
+# 3. Instalar Luarocks a partir do código-fonte (Isso é CRUCIAL para linkar com o seu Lua 5.5)
+RUN wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz && \
+    tar zxpf luarocks-3.11.1.tar.gz && \
+    cd luarocks-3.11.1 && \
+    ./configure --with-lua-include=/usr/local/include && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf luarocks-3.11.1*
+
+ENV LUA_PATH="/usr/local/share/lua/5.5/?.lua;/usr/local/share/lua/5.5/?/init.lua;./?.lua;;"
+ENV LUA_CPATH="/usr/local/lib/lua/5.5/?.so;;"
+
 RUN apt update && apt install -y \
-    luarocks \
     lua-socket \
     lua-sec \
     zlib1g-dev
