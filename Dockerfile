@@ -25,7 +25,7 @@ RUN apt update && apt install -y \
 
 RUN luarocks install telegram-bot-lua
 RUN luarocks install lua-cjson
-RUN luarocks install ltn12
+RUN luarocks install luasocket
 RUN luarocks install htmlparser
 
 WORKDIR /app
