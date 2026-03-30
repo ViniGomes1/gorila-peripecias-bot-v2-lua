@@ -61,20 +61,20 @@ server:start(function (request, response)
         response:statusCode(200):addHeader('Content-Type', 'text/plain'):write("deu")
 
     elseif path == "/webhook" then
-        local body = request:receiveBody()
+        local body = request.querystring()
         print(body)
-        if body and body ~= "" then
-            print("Recebido corpo: " .. body)
-            local status, err = pcall(function()
-                local decoded = json.decode(body)
-                handle_updates(decoded)
-            end)
-
-            if not status then
-                print("Erro ao processar update: " .. tostring(err))
-            end
-
-        end
+--        if body and body ~= "" then
+--            print("Recebido corpo: " .. body)
+--            local status, err = pcall(function()
+--                local decoded = json.decode(body)
+--                handle_updates(decoded)
+--            end)
+--
+--            if not status then
+--                print("Erro ao processar update: " .. tostring(err))
+--            end
+--
+--        end
         response:statusCode(200):addHeader('Content-Type', 'text/plain'):write("!")
     else
         response:statusCode(404):addHeader('Content-Type', 'text/plain'):write("Not Found")
