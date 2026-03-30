@@ -20,7 +20,7 @@ RUN curl -L -R -O https://www.lua.org/ftp/lua-5.5.0.tar.gz && \
 
 # 3. Instalar Luarocks a partir do código-fonte (Isso é CRUCIAL para linkar com o seu Lua 5.5)
 RUN curl -L -R -O https://luarocks.github.io/luarocks/releases/luarocks-3.13.0.tar.gz && \
-    tar zxpf luarocks-3.11.1.tar.gz && \
+    tar zxpf luarocks-3.13.0.tar.gz && \
     cd luarocks-3.13.0 && \
     ./configure --with-lua-include=/usr/local/include && \
     make && \
