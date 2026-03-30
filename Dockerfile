@@ -26,7 +26,7 @@ RUN curl -L -R -O https://luarocks.github.io/luarocks/releases/luarocks-3.13.0.t
     make && \
     make install && \
     cd .. && \
-    rm -rf luarocks-3.11.1*
+    rm -rf luarocks-3.13.0*
 
 ENV LUA_PATH="/usr/local/share/lua/5.5/?.lua;/usr/local/share/lua/5.5/?/init.lua;./?.lua;;"
 ENV LUA_CPATH="/usr/local/lib/lua/5.5/?.so;;"
