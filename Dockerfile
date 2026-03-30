@@ -41,6 +41,7 @@ RUN luarocks install telegram-bot-lua
 RUN luarocks install lua-cjson
 RUN luarocks install luasocket
 RUN luarocks install htmlparser
+RUN luarocks install pegasus
 
 WORKDIR /app
 COPY . .
