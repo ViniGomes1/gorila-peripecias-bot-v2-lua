@@ -28,6 +28,8 @@ local json = require("cjson")
 -- end
 
 local function handle_updates(update)
+    if type(update) == "string" then update = json.decode(update) end
+
     if update.message then
         local msg = update.message
         local chat_id = msg.chat.id
@@ -42,7 +44,7 @@ local function handle_updates(update)
 end
 
 local server = pegasus:new({
-    port = os.getenv("PORT") or 5000,
+    port = os.getenv("PORT") or 10000,
     location = '0.0.0.0'
 })
 
@@ -56,16 +58,23 @@ server:start(function (request, response)
 
     elseif path == "/webhook" then
         local body = request:receive_body()
-        if body then
+        if body and body ~= "" then
             local decoded = json.decode(body)
-            if decoded then
-                handle_updates(body)
-            end
-        end
+            local status, err = pcall(function()
+                local decoded = json.decode(body)
+                handle_updates(decoded)
+            end)
 
+            if not status then
+                print("Erro ao processar update: " .. tostring(err))
+            end
+
+        end
+        response:status(200):write("!")
+    else
+        response:status(404):write("Not Found")
+            
     end
 
 end)
 
-api.delete_webhook()
-api.run({ timeout = 60 })
