@@ -61,7 +61,8 @@ server:start(function (request, response)
         response:statusCode(200):addHeader('Content-Type', 'text/plain'):write("deu")
 
     elseif path == "/webhook" then
-        local body = request:body()
+        local body = request:receiveBody()
+        print(body)
         if body and body ~= "" then
             print("Recebido corpo: " .. body)
             local status, err = pcall(function()
