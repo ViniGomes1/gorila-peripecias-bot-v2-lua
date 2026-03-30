@@ -53,11 +53,12 @@ print("webhook: " .. os.getenv("LINK_WEBHOOK"))
 
 server:start(function (request, response)
     local path = request:path()
+    print("Requisição recebida em: " .. tostring(path))
 
     if path == "/" then
         local url = os.getenv("LINK_WEBHOOK") .. "/webhook"
         local sucess = api.set_webhook(url)
-        response:status(200):add_header('Content-Type', 'text/plain'):write("Webhook configurado para: " .. url .. " | Status: " .. tostring(sucess))
+        response:statusCode(200):add_header('Content-Type', 'text/plain'):write("deu")
 
     elseif path == "/webhook" then
         local body = request:body()
@@ -73,9 +74,9 @@ server:start(function (request, response)
             end
 
         end
-        response:status(200):write("!")
+        response:statusCode(200):add_header('Content-Type', 'text/plain'):write("!")
     else
-        response:status(404):write("Not Found")
+        response:statusCode(404):add_header('Content-Type', 'text/plain'):write("Not Found")
             
     end
 
