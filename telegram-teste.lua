@@ -60,8 +60,9 @@ server:start(function (request, response)
         response:status(200):add_header('Content-Type', 'text/plain'):write("Webhook configurado para: " .. url .. " | Status: " .. tostring(sucess))
 
     elseif path == "/webhook" then
-        local body = request:receive_body()
+        local body = request:body()
         if body and body ~= "" then
+            print("Recebido corpo: " .. body)
             local status, err = pcall(function()
                 local decoded = json.decode(body)
                 handle_updates(decoded)
