@@ -58,7 +58,7 @@ server:start(function (request, response)
     if path == "/" then
         local url = os.getenv("LINK_WEBHOOK") .. "/webhook"
         local sucess = api.set_webhook(url)
-        response:statusCode(200):add_header('Content-Type', 'text/plain'):write("deu")
+        response:statusCode(200):addHeader('Content-Type', 'text/plain'):write("deu")
 
     elseif path == "/webhook" then
         local body = request:body()
@@ -74,9 +74,9 @@ server:start(function (request, response)
             end
 
         end
-        response:statusCode(200):add_header('Content-Type', 'text/plain'):write("!")
+        response:statusCode(200):addHeader('Content-Type', 'text/plain'):write("!")
     else
-        response:statusCode(404):add_header('Content-Type', 'text/plain'):write("Not Found")
+        response:statusCode(404):addHeader('Content-Type', 'text/plain'):write("Not Found")
             
     end
 
