@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libreadline-dev \
     libssl-dev \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -L -R -O https://www.lua.org/ftp/lua-5.5.0.tar.gz && \
