@@ -50,7 +50,7 @@ server:start(function (request, response)
     local path = request:path()
 
     if path == "/" then
-        local url = os.getenv("LINK_WEBHOOK" .. "/webhook")
+        local url = os.getenv("LINK_WEBHOOK") .. "/webhook"
         local sucess = api.set_webhook(url)
         response:status(200):add_headers('Content-Type', 'text/plain'):write("Webhook configurado: " .. tostring(sucess))
 
