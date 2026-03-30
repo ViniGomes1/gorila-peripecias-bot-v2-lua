@@ -48,6 +48,8 @@ local server = pegasus:new({
     location = '0.0.0.0'
 })
 
+print("Iniciando servidor na porta " .. (os.getenv("PORT") or "10000"))
+
 server:start(function (request, response)
     local path = request:path()
 
@@ -59,7 +61,6 @@ server:start(function (request, response)
     elseif path == "/webhook" then
         local body = request:receive_body()
         if body and body ~= "" then
-            local decoded = json.decode(body)
             local status, err = pcall(function()
                 local decoded = json.decode(body)
                 handle_updates(decoded)

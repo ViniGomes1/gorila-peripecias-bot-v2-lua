@@ -34,7 +34,6 @@ ENV LUA_CPATH="/usr/local/lib/lua/5.5/?.so;;"
 
 RUN apt update && apt install -y \
     lua-socket \
-    lua-sec \
     zlib1g-dev
 
 RUN luarocks install telegram-bot-lua
@@ -42,6 +41,7 @@ RUN luarocks install lua-cjson
 RUN luarocks install luasocket
 RUN luarocks install htmlparser
 RUN luarocks install pegasus
+RUN luarocks install luasec
 
 WORKDIR /app
 COPY . .
