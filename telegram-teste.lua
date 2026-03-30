@@ -49,12 +49,12 @@ local server = pegasus:new({
 server:start(function (request, response)
     local path = request:path()
 
-    if path == "/set_webhook" then
-        local url = os.getenv("LINK_WEBHOOK")
+    if path == "/" then
+        local url = os.getenv("LINK_WEBHOOK" .. "/webhook")
         local sucess = api.set_webhook(url)
         response:status(200):add_headers('Content-Type', 'text/plain'):write("Webhook configurado: " .. tostring(sucess))
 
-    elseif path == "/Webhook" then
+    elseif path == "/webhook" then
         local body = request:receive_body()
         if body then
             local decoded = json.decode(body)
