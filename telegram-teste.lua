@@ -49,6 +49,7 @@ local server = pegasus:new({
 })
 
 print("Iniciando servidor na porta " .. (os.getenv("PORT") or "10000"))
+print("webhook: " .. os.getenv("LINK_WEBHOOK"))
 
 server:start(function (request, response)
     local path = request:path()
